@@ -1,5 +1,8 @@
 #!/system/bin/sh
-# custom init script by thomasskull666 for SCH-R910
+
+#
+# initial script by thomasskull666, updates by k0nane :: k0@k0nane.info
+#
 
 /sbin/busybox mount -o remount,rw /dev/block/stl10 /system
 /sbin/busybox mount -o remount,rw / /

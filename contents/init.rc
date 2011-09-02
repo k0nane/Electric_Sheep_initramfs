@@ -134,6 +134,7 @@ loglevel 3
     # Mount /system rw first to give the filesystem a chance to save a checkpoint
     #mount yaffs2 mtd@system /system 
 
+	mount ext4 /dev/block/stl10 /system noatime nodiratime nodelalloc data=ordered barrier=0
     mount rfs /dev/block/stl10 /system ro check=no
 
 #    mount yaffs2 mtd@system /system ro remount
@@ -149,6 +150,9 @@ loglevel 3
 ###################################################################
 # create SEC_INTERNAL_STORAGE 1/3
 ##    mount ext3 /dev/block/mmcblk0p1 /userdata nosuid nodev
+# Data's on an eMMC device - k0nane
+
+	mount ext4 /dev/block/mmcblk0p1 noatime nodiratime data=ordered barrier=1
     mount rfs /dev/block/mmcblk0p1 /data nosuid nodev check=no
     chown system system /data
     chmod 0771 /data
@@ -158,6 +162,8 @@ loglevel 3
 ###################################################################
 # create dbdata partition
 mkdir /dbdata
+
+mount ext4 /dev/block/stl11 /dbdata nodelalloc noatime nodiratime data=ordered
 mount rfs /dev/block/stl11 /dbdata nosuid nodev check=no
 mkdir /dbdata/databases
 chown system system /dbdata
@@ -175,6 +181,7 @@ chmod 0777 /dbdata/databases
 ###################################################################
 # create SEC_INTERNAL_STORAGE 2/3
 ##    mount ext3 /dev/block/mmcblk0p1 /userdata nosuid nodev
+# We don't format this EXT4 and don't want to - k0nane
     mount rfs /dev/block/mmcblk0p2 /data/fota nosuid nodev check=no
     chown system system /data/fota
     chmod 0771 /data/fota
@@ -199,6 +206,8 @@ chmod 0777 /dbdata/databases
 
     # Same reason as /data above
     #mount yaffs2 mtd@cache /cache nosuid nodev
+	
+	mount ext4 /dev/block/stl12 /cache nosuid nodev noatime nodiratime check=n errors=continue nobh discard data=writeback barrier=0 noauto_da_alloc
     mount rfs /dev/block/stl12 /cache nosuid nodev check=no
     chown system cache /cache
     chmod 0770 /cache
