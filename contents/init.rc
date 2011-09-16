@@ -21,7 +21,6 @@ loglevel 3
 # Backward compatibility
     symlink /system/etc /etc
 
-
 # to enable wifi
      setprop wifi.interface "eth0"
 # end of wifi

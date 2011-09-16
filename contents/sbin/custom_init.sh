@@ -32,6 +32,10 @@ chown root.system /res/images/*
 busybox run-parts /system/etc/init.d
 sync
 
+# Lock the CPU down til SetCPU or such can set it as insurance - thanks Rodderik
+echo 1000000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+echo 1000000 > /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq
+
 # remove bad su binaries/links
 rm /system/bin/su
 rm /system/xbin/su
