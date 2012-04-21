@@ -134,7 +134,7 @@ loglevel 3
     # Mount /system rw first to give the filesystem a chance to save a checkpoint
     #mount yaffs2 mtd@system /system 
 
-	mount ext4 /dev/block/stl10 /system noatime nodiratime nodelalloc data=ordered barrier=0
+    mount ext4 /dev/block/stl10 /system noatime nodiratime nodelalloc data=ordered barrier=0
     mount rfs /dev/block/stl10 /system ro check=no
 
 #    mount yaffs2 mtd@system /system ro remount
@@ -152,7 +152,7 @@ loglevel 3
 ##    mount ext3 /dev/block/mmcblk0p1 /userdata nosuid nodev
 # Data's on an eMMC device - k0nane
 
-	mount ext4 /dev/block/mmcblk0p1 noatime nodiratime data=ordered barrier=1
+    mount ext4 /dev/block/mmcblk0p1 noatime nodiratime data=ordered barrier=1
     mount rfs /dev/block/mmcblk0p1 /data nosuid nodev check=no
     chown system system /data
     chmod 0771 /data
