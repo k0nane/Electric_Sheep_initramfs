@@ -70,6 +70,8 @@ loglevel 3
     chmod 0770 /cache/recovery
 
 # mount system partitions
+
+    mount ext4 /dev/block/stl10 /system noatime nodiratime nodelalloc data=ordered barrier=0
     mount rfs /dev/block/stl10 /system check=no
     
 # mount data partitions
@@ -79,6 +81,7 @@ loglevel 3
 
 ###################################################################  
 
+    mount ext4 /dev/block/stl12 /cache nosuid nodev noatime nodiratime check=n errors=continue nobh discard data=writeback barrier=0
     mount rfs /dev/block/stl12 /cache nosuid nodev check=no
     chown system cache /cache
     chmod 0770 /cache
@@ -112,7 +115,7 @@ on property:persist.service.adb.enable=1
 on property:persist.service.adb.enable=0
 	stop adbd
 
-service recovery /system/bin/recovery
+service recovery /sbin/recovery
 	oneshot
 
 
